@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Character encoding for proper text rendering -->
+    <meta charset="UTF-8">
+    <!-- Responsive viewport configuration for mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Page title displayed in browser tab -->
+    <title>Bala Sankar</title>
+    <!-- Google Fonts preconnect for faster font loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Share Tech font from Google Fonts for consistent typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech&display=swap" rel="stylesheet">
+
+    <style>
+        /* ========================================
+           GLOBAL STYLES
+           ======================================== */
+        
+        /* Apply Share Tech font to all elements */
+        *{
+            font-family: "Share Tech", sans-serif;
+        }
+
+        /* Remove default link styling */
+        a{
+            text-decoration: none;
+            color: black;
+        }
+
+        /* ========================================
+           NAVIGATION BAR
+           ======================================== */
+        
+        /* Top navigation container - right-aligned horizontal menu */
+        nav{
+            display: flex;
+            padding-top: 25px;
+            padding-bottom: 145px;
+            align-items: right;
+            gap: 19px;
+            justify-content: flex-end;
+            letter-spacing: 2px;
+            font-size: 20px;
+            padding-right: 20px;
+        }
+
+        /* Default navigation link appearance */
+        nav a{
+            color: gray;
+        }
+
+        /* Bold black text on navigation hover */
+        nav a:hover{
+            font-weight: 900;
+            transition: 0.3s;
+            color: black;
+        }
+        
+        /* ========================================
+           MAIN CONTENT AREA
+           ======================================== */
+        
+        /* Main content wrapper with padding */
+        main{
+            display: flex;
+            font-size: 20px;
+            flex-direction: column;
+            padding-right: 20px;
+            padding-left: 30px;
+        }     
+
+        /* ========================================
+           TIMELINE COMPONENT STYLES
+           ======================================== */
+        
+        /* Timeline wrapper with max width constraint */
+        .timeline-container {
+            max-width: 1000px;
+        }
+
+        /* Timeline base container */
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        /* Vertical line connecting timeline items */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            bottom: 0;
+            left: 6px;
+            width: 2px;
+            background-color: #000000;
+        }
+
+        /* Individual timeline entry container */
+        .timeline-item {
+            position: relative;
+            margin-bottom: 60px;
+        }
+
+        /* Circular dot marker on timeline */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 0px;
+            width: 14px;
+            height: 14px;
+            background-color: #000000;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        /* Content area offset from timeline line */
+        .timeline-content {
+            margin-left: 40px;
+        }
+
+        /* Flexbox layout for title and date alignment */
+        .title-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* Institution/organization title styling */
+        .title {
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 1.3rem;
+            margin: 0;
+        }
+
+        /* Date range display styling */
+        .date {
+            font-weight: normal;
+            font-size: 1.1rem;
+            white-space: nowrap;
+        }
+
+        /* Description text styling */
+        .description {
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #000000;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <nav>
+        <a href="index.html" >HOME</a>
+        <a href="about.html" style="font-weight: bold;color: black;">ABOUT ME</a>
+        <a href="projects.html">PROJECTS</a>
+        <a href="coolstff.html">COOL STUFFS</a>
+        
+    </nav>
+
+    <main>
+        <div class="content-h">
+            <p>I’m an Integrated M.Tech student in Computer Science and Engineering  at VIT, Vellore who  enjoys breaking things, mostly in cybersecurity, and teaching machines how to do stuff. I love working at the intersection of security and machine learning, but I’m always experimenting with any technical idea that looks interesting, not just ML models. Most of my time goes into coding, testing ideas, and poking at systems to see how they behave under pressure. When I’m not doing that, I’m probably watching movies, reading books, slowly getting into anime (currently Monster), or hanging out with friends. I’m deeply passionate about entrepreneurship and spend a lot of time thinking about how today’s experiments could turn into tomorrow’s real, useful products, because one day I plan to build my own thing. Maybe not OpenAI, Google, or Pied Piper yet, but definitely something worth breaking the internet over.</p>
+        </div>
+
+        <div class="timeline-container">
+            <div class="timeline">
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="title-header">
+                            <h2 class="title">KENDRIYA VIDYALAYA</h2>
+                            <span class="date">2011-2023</span>
+                        </div>
+                        <p class="description">The good old days that I miss the most were when I was in school and experimented with many things. I completed my 11th and 12th in the science stream.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="title-header">
+                            <h2 class="title">VELLORE INSTITUTE OF TECHNOLOGY, VELLORE</h2>
+                            <span class="date">2023-2028</span>
+                        </div>
+                        <p class="description">The next stage of my life… where I am learning many things. I am pursuing an integrated M.Tech in Computer Science and Engineering… actively taking part in clubs such as the Anchoring Club, LEO Club, and Bulls and Bears… I also founded my own club, The WhiteHat’s Club—a cybersecurity club, where I served as the Secretary… constantly doing new things and learning even more…</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

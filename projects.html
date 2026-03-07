@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bala Sankar</title>
+    <script src="https://kit.fontawesome.com/786868d821.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech&display=swap" rel="stylesheet">
+
+    <style>
+        /* ========================================
+           GLOBAL STYLES
+           ======================================== */
+        
+        /* Apply Share Tech font to all elements */
+        *{
+            font-family: "Share Tech", sans-serif;
+        }
+
+        /* Light theme body background */
+        body{
+            background-color: #ffffff;
+            color: #111111;
+        }
+
+        /* Remove default link styling */
+        a{
+            text-decoration: none;
+            color: #111111;
+        }
+
+        /* ========================================
+           NAVIGATION BAR
+           ======================================== */
+        
+        /* Top navigation container */
+        nav{
+            display: flex;
+            padding-top: 25px;
+            padding-bottom: 145px;
+            align-items: right;
+            gap: 19px;
+            justify-content: flex-end;
+            letter-spacing: 2px;
+            font-size: 20px;
+            padding-right: 20px;
+        }
+
+        /* Default navigation link appearance */
+        nav a{
+            color: #666666;
+        }
+
+        /* Bold black text on navigation hover */
+        nav a:hover{
+            font-weight: 900;
+            transition: 0.3s;
+            color: #000000;
+        }
+        
+        /* ========================================
+           MAIN CONTENT AREA
+           ======================================== */
+        
+        /* Main content wrapper with centered max-width layout */
+        main {
+            padding: 0 40px 60px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Page title styling */
+        .ni {
+            font-size: 40px;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+        
+        /* ========================================
+           PROJECT GRID LAYOUT
+           ======================================== */
+        
+        /* Responsive grid container for project cards */
+        .gi {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        /* Individual project card styling */
+        .project-card {
+            border: 1px solid #e0e0e0;
+            padding: 25px;
+            transition: 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: #f9f9f9;
+            min-height: 250px;
+        }
+
+        /* Hover effect */
+        .project-card:hover {
+            border-color: #111111;
+        }
+
+        /* Project title styling */
+        .project-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        /* Project description text */
+        .project-desc {
+            font-size: 16px;
+            color: #555555;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        /* Technology stack tags at bottom of card */
+        .tech-stack {
+            font-size: 13px;
+            color: #666666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: auto;
+            padding-top: 15px;
+            border-top: 1px solid #eeeeee;
+            line-height: 1.4;
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">HOME</a>
+        <a href="about.html">ABOUT ME</a>
+        <a href="projects.html" style="font-weight: bold;color: #000000;">PROJECTS</a>
+        <a href="coolstff.html">COOL STUFFS</a>
+    </nav>
+
+    <main>
+        <div class="ni">Pet Projects..</div>
+        
+        <div class="gi">
+            
+            <div class="project-card">
+                <div>
+                    <div class="project-title">GreenGuardian</div>
+                    <div class="project-desc">
+                        Smart urban planting advisor helping cities go green. Features auto-location, weather-based recommendations, and AI plant identification.
+                    </div>
+                </div>
+                <div>
+                    <div class="tech-stack">Next.js • TypeScript • Express • MongoDB • APIs</div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div>
+                    <div class="project-title">Banking Transaction System</div>
+                    <div class="project-desc">
+                        A comprehensive banking simulation implementing core operations with an intuitive GUI and secure account management.
+                    </div>
+                </div>
+                <div>
+                    <div class="tech-stack">Java • JavaFX • OOP • File I/O</div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div>
+                    <div class="project-title">Court Case Manager</div>
+                    <div class="project-desc">
+                        Streamlining court case filing with ML-powered categorization based on description analysis.
+                    </div>
+                </div>
+                <div>
+                    <div class="tech-stack">HTML • CSS • JS • Machine Learning</div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div>
+                    <div class="project-title">Uni Support Chatbot</div>
+                    <div class="project-desc">
+                        A RAG-based AI assistant designed to answer university queries by retrieving student handbook data.
+                    </div>
+                </div>
+                <div>
+                    <div class="tech-stack">Python • LLMs • RAG • Vector DB</div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div>
+                    <div class="project-title">PharmaCheck</div>
+                    <div class="project-desc">
+                        Software verification system for validating drug interactions and ensuring pharmaceutical safety protocols.
+                    </div>
+                </div>
+                <div>
+                    <div class="tech-stack">Software Validation • Testing</div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div>
+                    <div class="project-title">Algorithm Visualizer</div>
+                    <div class="project-desc">
+                        Interactive tool to visualize sorting and pathfinding algorithms in real-time.
+                    </div>
+                </div>
+                <div>
+                    <div class="tech-stack">React • JavaScript • CSS</div>
+                </div>
+            </div>
+
+        </div>
+    </main>   
+</body>
+</html>

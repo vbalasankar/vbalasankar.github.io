@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Character encoding for proper text rendering -->
+    <meta charset="UTF-8">
+    <!-- Responsive viewport configuration for mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Page title displayed in browser tab -->
+    <title>Bala Sankar </title>
+    <!-- Font Awesome icon library for icons -->
+    <script src="https://kit.fontawesome.com/786868d821.js" crossorigin="anonymous"></script>
+    <!-- Google Fonts preconnect for faster font loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Share Tech font from Google Fonts for consistent typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech&display=swap" rel="stylesheet">
+    <style>
+        /* ========================================
+           GLOBAL STYLES
+           ======================================== */
+        
+        /* Apply Share Tech font to all elements */
+        *{
+            font-family: "Share Tech", sans-serif;
+        }
+
+        /* Remove default link styling */
+        a{
+            text-decoration: none;
+            color: black;
+        }
+
+        /* ========================================
+           NAVIGATION BAR
+           ======================================== */
+        
+        /* Top navigation container - right-aligned horizontal menu */
+        nav{
+            display: flex;
+            padding-top: 25px;
+            padding-bottom: 145px;
+            gap: 19px;
+            justify-content: flex-end;
+            letter-spacing: 2px;
+            font-size: 20px;
+            padding-right: 20px;
+        }
+
+        /* Default navigation link appearance */
+        nav a{
+            color: gray;
+        }
+
+        /* Bold black text on navigation hover */
+        nav a:hover{
+            font-weight: 900;
+            transition: 0.3s;
+            color: black;
+        }
+
+        /* ========================================
+           MAIN LAYOUT
+           ======================================== */
+        
+        /* Main content wrapper with centered max-width layout */
+        main { 
+            padding: 0 40px 60px 40px; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+
+        /* Page title styling */
+        .page-title {
+            font-size: 40px; 
+            margin-bottom: 40px;
+            border-bottom: 1px solid #eee; 
+            padding-bottom: 10px;
+            text-transform: lowercase;
+        }
+
+        /* ========================================
+           MASONRY GRID LAYOUT
+           ======================================== */
+        
+        /* Two-column masonry grid for content blocks */
+        .grid-container { 
+            column-count: 2; 
+            column-gap: 50px; 
+        }
+
+        /* Responsive: Single column on smaller screens */
+        @media (max-width: 900px) { 
+            .grid-container { 
+                column-count: 1; 
+            } 
+        }
+
+        /* ========================================
+           CONTENT BLOCKS
+           ======================================== */
+        
+        /* Individual content block container */
+        .block { 
+            margin-bottom: 40px; 
+            break-inside: avoid; 
+        }
+
+        /* Block section headers */
+        .block h3 {
+            font-size: 24px; 
+            border-bottom: 2px solid black;
+            display: inline-block; 
+            margin-bottom: 20px;
+            padding-bottom: 5px; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+        }
+
+        /* ========================================
+           INTERACTIVE GAMES
+           ======================================== */
+        
+        /* Game canvas wrapper with interactive focus states */
+        .game-wrapper {
+            border: 1px solid #ddd;
+            background: #fff;
+            position: relative;
+            margin-bottom: 10px;
+            transition: border 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+        
+        /* Active game styling - highlighted when selected */
+        .game-wrapper.focused {
+            border: 2px solid black;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        /* Canvas element styling */
+        canvas {
+            display: block;
+            margin: 0 auto;
+            width: 100%;
+                    background-color: #ffffff;
+        }
+        
+        /* Game control instructions */
+        .game-hint {
+            font-size: 14px; 
+            color: gray; 
+            text-align: center; 
+            margin-bottom: 20px;
+        }
+
+        /* ========================================
+           CONTENT COMPONENTS
+           ======================================== */
+        
+        /* Quote display box with left accent border */
+        .quote-box {
+            background-color: #f9f9f9; 
+            padding: 20px;
+            border-left: 4px solid black; 
+            font-style: italic;
+            color: #333; 
+            font-size: 18px; 
+            line-height: 1.6; 
+            margin-bottom: 20px;
+        }
+
+        /* Quote author attribution */
+        .author {
+            font-size: 14px; 
+            font-style: normal; 
+            display: block;
+            margin-top: 10px; 
+            color: gray; 
+            text-transform: uppercase; 
+            font-weight: bold;
+        }
+
+        /* Unstyled list container */
+        .block ul { 
+            list-style-type: none; 
+            padding: 0; 
+        }
+
+        /* List items with icon alignment */
+        .block li { 
+            font-size: 19px; 
+            margin-bottom: 15px; 
+            color: #444; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+        }
+
+        /* Terminal/code display box */
+        .terminal-box {
+            background: #2d2d2d; 
+            color: #00ff00; 
+            padding: 20px;
+            font-family: monospace; 
+            border-radius: 4px; 
+            font-size: 16px; 
+            line-height: 1.5;
+        }
+
+        /* Terminal comment styling */
+        .terminal-box .comment { 
+            color: #777; 
+        }
+
+        /* Terminal command prompt styling */
+        .terminal-box .cmd::before { 
+            content: "$ "; 
+            color: #ff00de; 
+        }
+
+    </style>
+</head>
+<body>
+    <!-- ========================================
+         NAVIGATION MENU
+         ======================================== -->
+    <nav>
+        <a href="index.html">HOME</a>
+        <a href="about.html">ABOUT ME</a>
+        <a href="projects.html">PROJECTS</a>
+        <!-- Active page highlighted with bold black text -->
+        <a href="coolstff.html" style="font-weight: 900; color: black;">COOL STUFFS</a>
+    </nav>
+
+    <!-- ========================================
+         MAIN CONTENT AREA
+         ======================================== -->
+    <main>
+        <!-- Page Title -->
+        <div class="page-title">cool stuffs</div>
+
+        <!-- Masonry Grid Container -->
+        <div class="grid-container">
+
+            <!-- Chrome Dino Game Block -->
+            <div class="block">
+                <h3>No Internet</h3>
+                <div class="game-wrapper" id="dinoWrapper" onclick="focusGame('dino')">
+                    <!-- Canvas for Chrome Dino game rendering -->
+                    <canvas id="dinoCanvas" width="600" height="150"></canvas>
+                </div>
+                <div class="game-hint" id="dinoHint">Click to activate • Space to Jump</div>
+            </div>
+
+            <!-- Flappy Bird Game Block -->
+            <div class="block">
+                <h3>Flappy Bird</h3>
+                <div class="game-wrapper" id="flappyWrapper" onclick="focusGame('flappy')">
+                    <!-- Canvas for Flappy Bird game rendering -->
+                    <canvas id="flappyCanvas" width="600" height="320"></canvas>
+                </div>
+                <div class="game-hint" id="flappyHint">Click to activate • Space to Flap</div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // ==========================================
+        // GAME FOCUS MANAGER
+        // Prevents both games from running simultaneously
+        // ==========================================
+        
+        let activeGame = null; // Tracks which game is active: 'dino' or 'flappy'
+
+        /**
+         * Sets focus to a specific game and triggers its action
+         * @param {string} game - Either 'dino' or 'flappy'
+         */
+        function focusGame(game) {
+            activeGame = game;
+            
+            // Reset all game visual states
+            document.getElementById('dinoWrapper').classList.remove('focused');
+            document.getElementById('flappyWrapper').classList.remove('focused');
+            document.getElementById('dinoHint').style.color = 'gray';
+            document.getElementById('flappyHint').style.color = 'gray';
+
+            // Activate selected game
+            if(game === 'dino') {
+                document.getElementById('dinoWrapper').classList.add('focused');
+                document.getElementById('dinoHint').style.color = 'black';
+                actionDino(); // Start/jump in dino game
+            } else if (game === 'flappy') {
+                document.getElementById('flappyWrapper').classList.add('focused');
+                document.getElementById('flappyHint').style.color = 'black';
+                actionFlappy(); // Start/flap in flappy bird
+            }
+        }
+
+        // Global keyboard event listener for game controls
+        document.addEventListener('keydown', e => {
+            if(e.code === 'Space' || e.code === 'ArrowUp') {
+                e.preventDefault(); // Prevent page scrolling
+                if(activeGame === 'dino') actionDino();
+                if(activeGame === 'flappy') actionFlappy();
+            }
+        });
+
+
+        // ==========================================
+        // CHROME DINO GAME ENGINE
+        // Classic endless runner game
+        // ==========================================
+        
+        // Canvas setup
+        const dc = document.getElementById('dinoCanvas');
+        const dctx = dc.getContext('2d');
+        
+        // Game state variables
+        let dGame = { state: 'waiting', score: 0, hiscore: 0, speed: 6, frames: 0 };
+        
+        // T-Rex player properties
+        let trex = { 
+            x: 40,           // X position
+            y: 110,          // Y position (ground level when not jumping)
+            w: 44,           // Width
+            h: 47,           // Height
+            dy: 0,           // Vertical velocity
+            jump: -11,       // Jump strength
+            gravity: 0.6,    // Gravity force
+            grounded: true   // Whether T-Rex is on ground
+        };
+        
+        let obstacles = [];  // Array of cacti obstacles
+        let clouds = [];     // Background cloud decorations
+
+        /**
+         * Main action handler for dino game
+         * Handles game start, jump, and restart logic
+         */
+        function actionDino() {
+            if(dGame.state === 'waiting') {
+                // Start new game
+                dGame.state = 'running'; 
+                dGame.score = 0; 
+                dGame.speed = 6; 
+                dGame.frames = 0;
+                obstacles = []; 
+                trex.y = 110; 
+                trex.dy = 0;
+            } else if(dGame.state === 'running' && trex.grounded) {
+                // Jump when on ground
+                trex.dy = trex.jump; 
+                trex.grounded = false;
+            } else if(dGame.state === 'gameover') {
+                // Restart game
+                dGame.state = 'waiting'; 
+                trex.y = 110; 
+                actionDino();
+            }
+        }
+
+        /**
+         * Renders the T-Rex with different animations
+         * @param {number} x - X position
+         * @param {number} y - Y position
+         * @param {number} frame - Current frame for animation
+         */
+        function drawExactDino(x, y, frame) {
+            dctx.fillStyle = '#535353';
+            
+            // Determine animation mode
+            let mode = 'stand'; 
+            if(dGame.state === 'running') mode = (Math.floor(frame/6) % 2 === 0) ? 'run1' : 'run2';
+            if(!trex.grounded) mode = 'jump';
+            if(dGame.state === 'gameover') mode = 'dead';
+
+            // Draw T-Rex body parts
+            dctx.fillRect(x + 20, y, 20, 15);        // Head
+            dctx.fillRect(x + 20, y + 15, 8, 10);    // Neck
+            dctx.fillRect(x, y + 15, 20, 23);        // Body
+            dctx.fillRect(x - 4, y + 10, 4, 15);     // Tail
+            
+            // Draw eye (X marks the spot when dead)
+            if(mode !== 'dead') {
+                dctx.fillStyle = '#fff'; 
+                dctx.fillRect(x + 30, y + 2, 4, 4); 
+                dctx.fillStyle = '#535353';
+            } else {
+                dctx.fillStyle = '#fff'; 
+                dctx.fillRect(x + 30, y + 2, 4, 4); 
+                dctx.fillStyle = '#535353'; 
+                dctx.fillRect(x + 31, y + 3, 2, 2); 
+            }
+
+            // Draw legs with running animation
+            if(mode === 'stand' || mode === 'jump') {
+                dctx.fillRect(x + 5, y + 38, 5, 9); 
+                dctx.fillRect(x + 18, y + 38, 5, 9);
+            } else if (mode === 'run1') {
+                dctx.fillRect(x + 5, y + 38, 5, 9); 
+                dctx.fillRect(x + 18, y + 35, 5, 4);
+            } else if (mode === 'run2') {
+                dctx.fillRect(x + 5, y + 35, 5, 4); 
+                dctx.fillRect(x + 18, y + 38, 5, 9);
+            }
+        }
+
+        /**
+         * Draws a cactus obstacle
+         * @param {number} x - X position
+         * @param {number} y - Y position
+         */
+        function drawSmallCactus(x, y) {
+            dctx.fillStyle = '#535353';
+            dctx.fillRect(x + 5, y, 6, 35);      // Main body
+            dctx.fillRect(x, y + 10, 4, 10);     // Left arm
+            dctx.fillRect(x + 12, y + 7, 4, 10); // Right arm
+        }
+
+        /**
+         * Main game loop for Chrome Dino
+         * Handles rendering, updates, and collision detection
+         */
+        function dLoop() {
+            requestAnimationFrame(dLoop);
+            
+            // Clear canvas and draw ground line
+            dctx.clearRect(0,0,dc.width,dc.height);
+            dctx.beginPath(); 
+            dctx.moveTo(0, 145); 
+            dctx.lineTo(600, 145); 
+            dctx.strokeStyle = '#535353'; 
+            dctx.lineWidth = 1; 
+            dctx.stroke();
+
+            // Update and draw background clouds
+            dctx.fillStyle = '#dcdcdc';
+            clouds.forEach(c => { 
+                if(dGame.state === 'running') c.x -= 0.5; 
+                dctx.fillRect(c.x, c.y, 30, 8); 
+                dctx.fillRect(c.x+5, c.y-5, 15, 5); 
+            });
+            
+            // Randomly spawn new clouds
+            if(dGame.state === 'running' && Math.random() < 0.005) {
+                clouds.push({x:600, y: 20 + Math.random()*50});
+            }
+
+            // Update game physics when running
+            if(dGame.state === 'running') {
+                dGame.score += 0.15;      // Increment score
+                dGame.speed += 0.001;     // Gradually increase difficulty
+                trex.dy += trex.gravity;  // Apply gravity
+                trex.y += trex.dy;        // Update position
+                
+                // Ground collision
+                if(trex.y > 100) { 
+                    trex.y = 100; 
+                    trex.dy = 0; 
+                    trex.grounded = true; 
+                } else { 
+                    trex.grounded = false; 
+                }
+            }
+            
+            // Draw T-Rex
+            drawExactDino(trex.x, trex.y, dGame.frames);
+
+            // Spawn obstacles during gameplay
+            if(dGame.state === 'running') {
+                if(Math.random() < 0.015) {
+                    // Ensure minimum spacing between obstacles
+                    if(obstacles.length === 0 || 600 - obstacles[obstacles.length-1].x > 250) {
+                        obstacles.push({x: 600, y: 110, w: 17, h: 35});
+                    }
+                }
+            }
+            
+            // Update and draw obstacles, check collisions
+            obstacles.forEach(o => {
+                if(dGame.state === 'running') o.x -= dGame.speed;
+                drawSmallCactus(o.x, o.y);
+                
+                // Collision detection
+                if(trex.x < o.x + o.w - 5 && 
+                   trex.x + trex.w - 10 > o.x + 5 && 
+                   trex.y + trex.h - 5 > o.y + 5) {
+                    dGame.state = 'gameover';
+                    if(dGame.score > dGame.hiscore) {
+                        dGame.hiscore = Math.floor(dGame.score);
+                    }
+                }
+            });
+
+            // Draw UI text (score, messages)
+            dctx.fillStyle = '#535353'; 
+            dctx.font = '18px Share Tech';
+            dctx.fillText(`HI ${Math.floor(dGame.hiscore)}  ${Math.floor(dGame.score)}`, 450, 30);
+            
+            if(dGame.state === 'waiting') {
+                dctx.fillText("PRESS SPACE", 250, 80);
+            }
+            if(dGame.state === 'gameover') { 
+                dctx.fillText("G A M E  O V E R", 240, 70); 
+                dctx.font = '14px Share Tech'; 
+                dctx.fillText("restart", 280, 90); 
+            }
+            
+            // Increment frame counter
+            if(dGame.state === 'running') dGame.frames++;
+        }
+        
+        // Start dino game loop
+        dLoop();
+
+
+        // ==========================================
+        // FLAPPY BIRD GAME ENGINE
+        // Side-scrolling bird navigation game
+        // ==========================================
+        
+        // Canvas setup
+        const fc = document.getElementById('flappyCanvas');
+        const fctx = fc.getContext('2d');
+
+        // Game state
+        let fGame = { state: 'waiting', score: 0, frames: 0 };
+        
+        // Bird properties (tuned for easier gameplay)
+        let bird = { 
+            x: 70,           // X position (fixed)
+            y: 150,          // Y position
+            r: 12,           // Radius for collision
+            dy: 0,           // Vertical velocity
+            gravity: 0.25,   // Gravity (reduced for easier control)
+            jump: -5,        // Jump strength (reduced for easier control)
+            rot: 0           // Rotation angle
+        }; 
+        
+        let pipes = [];  // Array of pipe obstacles
+
+        /**
+         * Main action handler for flappy bird
+         * Handles game start, flap, and restart logic
+         */
+        function actionFlappy() {
+            if(fGame.state === 'waiting') {
+                // Start new game
+                fGame.state = 'running'; 
+                fGame.score = 0; 
+                fGame.frames = 0;
+                pipes = []; 
+                bird.y = 150; 
+                bird.dy = 0; 
+                bird.rot = 0;
+            } else if(fGame.state === 'running') {
+                // Flap (jump)
+                bird.dy = bird.jump;
+            } else if(fGame.state === 'gameover') {
+                // Restart game
+                fGame.state = 'waiting';
+                actionFlappy();
+            }
+        }
+
+        /**
+         * Renders the bird with rotation
+         * @param {number} x - X position
+         * @param {number} y - Y position
+         * @param {number} rot - Rotation angle
+         */
+        function drawPixelBird(x, y, rot) {
+            fctx.save(); 
+            fctx.translate(x, y); 
+            fctx.rotate(rot);
+            
+            // Bird body (yellow)
+            fctx.fillStyle = '#f4c42e'; 
+            fctx.fillRect(-10, -8, 20, 16); 
+            fctx.strokeStyle = '#000'; 
+            fctx.lineWidth = 2; 
+            fctx.strokeRect(-10, -8, 20, 16);
+            
+            // Eye (white with black pupil)
+            fctx.fillStyle = '#fff'; 
+            fctx.fillRect(0, -12, 10, 10); 
+            fctx.strokeRect(0, -12, 10, 10);
+            fctx.fillStyle = '#000'; 
+            fctx.fillRect(6, -8, 2, 2);
+            
+            // Beak (red)
+            fctx.fillStyle = '#f04b38'; 
+            fctx.fillRect(4, 0, 10, 6); 
+            fctx.strokeRect(4, 0, 10, 6);
+            
+            // Wing (white)
+            fctx.fillStyle = '#fff'; 
+            fctx.fillRect(-12, 0, 10, 6); 
+            fctx.strokeRect(-12, 0, 10, 6);
+            
+            fctx.restore();
+        }
+
+        /**
+         * Draws a pipe obstacle with shading
+         * @param {number} x - X position
+         * @param {number} y - Y position
+         * @param {number} w - Width
+         * @param {number} h - Height
+         */
+        function drawPipe(x, y, w, h) {
+            // Main pipe body (green)
+            fctx.fillStyle = '#74BF2E'; 
+            fctx.fillRect(x, y, w, h);
+            fctx.strokeStyle = '#000'; 
+            fctx.lineWidth = 2; 
+            fctx.strokeRect(x, y, w, h);
+            
+            // Highlight (light green)
+            fctx.fillStyle = '#9CE659'; 
+            fctx.fillRect(x + 2, y, 6, h);
+            
+            // Shadow (dark green)
+            fctx.fillStyle = '#558121'; 
+            fctx.fillRect(x + w - 8, y, 4, h);
+        }
+
+        /**
+         * Main game loop for Flappy Bird
+         * Handles rendering, updates, and collision detection
+         */
+        function fLoop() {
+            requestAnimationFrame(fLoop);
+            
+            // Clear canvas and draw background
+            fctx.clearRect(0,0,fc.width,fc.height);
+            
+            // Sky (blue)
+            fctx.fillStyle = '#70C5CE'; 
+            fctx.fillRect(0, 0, fc.width, fc.height);
+            
+            // Ground (tan)
+            fctx.fillStyle = '#ded895'; 
+            fctx.fillRect(0, 280, 600, 40);
+            
+            // Grass line (green)
+            fctx.fillStyle = '#73bf2e'; 
+            fctx.fillRect(0, 280, 600, 4);
+            
+            // Ground border
+            fctx.strokeStyle = '#000'; 
+            fctx.beginPath(); 
+            fctx.moveTo(0,280); 
+            fctx.lineTo(600,280); 
+            fctx.stroke();
+
+            // Spawn pipes at intervals (tuned for easier gameplay)
+            if(fGame.state === 'running') {
+                if(fGame.frames % 140 === 0) { // Slower spawn rate
+                    let gap = 150;                 // Large gap for easier navigation
+                    let topH = 50 + Math.random() * (160);
+                    pipes.push({ x: 600, w: 52, top: topH, gap: gap, passed: false });
+                }
+            }
+
+            // Update and draw pipes, check collisions
+            pipes.forEach((p, i) => {
+                // Move pipes left (slower speed for easier gameplay)
+                if(fGame.state === 'running') p.x -= 2.0; 
+                
+                // Draw top pipe and cap
+                drawPipe(p.x, 0, p.w, p.top);
+                drawPipe(p.x-2, p.top-24, p.w+4, 24);
+                
+                // Draw bottom pipe and cap
+                let botY = p.top + p.gap;
+                let botH = 320 - botY - 40; 
+                drawPipe(p.x, botY, p.w, botH);
+                drawPipe(p.x-2, botY, p.w+4, 24);
+
+                // Collision detection with pipes
+                if(bird.x + 8 > p.x && bird.x - 8 < p.x + p.w) {
+                    if(bird.y - 8 < p.top || bird.y + 8 > botY) {
+                        fGame.state = 'gameover';
+                    }
+                }
+                
+                // Score increment when passing pipe
+                if(p.x + p.w < bird.x && !p.passed) { 
+                    fGame.score++; 
+                    p.passed = true; 
+                }
+            });
+
+            // Update bird physics and position
+            if(fGame.state === 'running' || fGame.state === 'waiting') {
+                if(fGame.state === 'running') {
+                    // Apply gravity and update position
+                    bird.dy += bird.gravity; 
+                    bird.y += bird.dy;
+                    
+                    // Update rotation based on velocity
+                    if(bird.dy < 0) {
+                        bird.rot = -0.4; // Tilt up when rising
+                    } else { 
+                        bird.rot += 0.03; 
+                        if(bird.rot > 1.5) bird.rot = 1.5; // Limit downward tilt
+                    }
+                } else { 
+                    // Idle bobbing animation
+                    bird.y = 150 + Math.sin(Date.now()/300) * 5; 
+                }
+                
+                // Ground collision
+                if(bird.y + 10 >= 280) { 
+                    bird.y = 280 - 10; 
+                    fGame.state = 'gameover'; 
+                }
+            }
+            
+            // Draw bird
+            drawPixelBird(bird.x, bird.y, bird.rot);
+
+            // Draw UI (score and messages)
+            if(fGame.state === 'running') {
+                fctx.fillStyle = '#fff'; 
+                fctx.font = '900 30px Share Tech'; 
+                fctx.strokeStyle = '#000'; 
+                fctx.lineWidth = 3; 
+                fctx.strokeText(fGame.score, 290, 50); 
+                fctx.fillText(fGame.score, 290, 50);
+            }
+            if(fGame.state === 'waiting') {
+                fctx.fillStyle = '#fff'; 
+                fctx.font = '20px Share Tech'; 
+                fctx.lineWidth = 3; 
+                fctx.strokeText("PRESS SPACE", 240, 180); 
+                fctx.fillText("PRESS SPACE", 240, 180);
+            }
+            if(fGame.state === 'gameover') {
+                fctx.fillStyle = '#fff'; 
+                fctx.strokeText("GAME OVER", 245, 140); 
+                fctx.fillText("GAME OVER", 245, 140);
+                fctx.font = '16px Share Tech'; 
+                fctx.strokeText("restart", 275, 170); 
+                fctx.fillText("restart", 275, 170);
+            }
+            
+            // Increment frame counter
+            if(fGame.state === 'running') fGame.frames++;
+        }
+        
+        // Start flappy bird game loop
+        fLoop();
+
+    </script>
+</body>
+</html>
